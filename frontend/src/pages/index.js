@@ -8,24 +8,33 @@ import { Theme, Flex, Text, Button, ThemePanel, Grid } from '@radix-ui/themes';
 import Textbox from '../components/Textbox'
 import ChatView from '@/components/ChatView';
 
+
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export class Message {
+  constructor(text, time, author) {
+      this.text = text;
+      this.time = time;
+      this.author = author;
+  }
+}
 
+export default function Home() {
+  const a = new Message('hello world', 22, "andrew");
   
   return (
-    <>
+    
     <Theme>
       <Grid columns={3}>
         <Flex direction="column" gap="4">
-          <ChatView messages={[]} />
+          <ChatView messages={[a, a, a]} />
           <Button>Let's go</Button>
           <ThemePanel />
           <Textbox />
         </Flex>
       </Grid>
     </Theme>
-    </>
+    
   )
 }
 
