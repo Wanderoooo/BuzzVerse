@@ -1,8 +1,10 @@
 import React from "react";
 import '@radix-ui/themes/styles.css';
 import { TextField } from "@radix-ui/themes";
+import { EyeOpenIcon, EyeNoneIcon} from '@radix-ui/react-icons'
 
 export default function Textbox(props) {
+
     function printText(val) {
         console.log(val.target.value)
     }
@@ -10,10 +12,7 @@ export default function Textbox(props) {
     return (
         <>
             <TextField.Root>
-                <TextField.Input placeholder={props.placeholder} onChange={printText} type={props.type}/>
-                <TextField.Slot>
-                    {props.rightIcon}
-                </TextField.Slot>
+                <TextField.Input placeholder={props.placeholder} onChange={printText} />
             </TextField.Root>
         </>
     )

@@ -1,39 +1,23 @@
 import React from "react";
 import '@radix-ui/themes/styles.css';
 import { Box, Flex, Grid, Theme, Text, Heading } from "@radix-ui/themes";
-import { EyeOpenIcon, EyeNoneIcon} from '@radix-ui/react-icons'
+
 import Textbox from "@/components/Textbox";
+import PasswordBox from "@/components/PasswordBox";
 
 export default function Login() {
-    const [passwordViewable, setPasswordViewable] = React.useState(false);
-
-    function changeViewable() {
-        setPasswordViewable(passwordViewable => !passwordViewable)
-    }
-
-    function viewableToString(viewable) {
-        if (viewable) {
-            return '';
-        }
-        return 'password';
-    }
-
-    function viewableToIcon(viewable) {
-        if (viewable) {
-            return <EyeNoneIcon onClick={changeViewable} />;
-        }
-        return <EyeOpenIcon onClick={changeViewable} />
-    }
-
-    return (
-        
-        <Theme>
-            <Grid rows="2">
+    
+    return (    
+        <Theme accentColor="cyan"
+        grayColor="gray"
+        panelBackground="solid"
+        scaling="100%"
+        radius='large'>
+            <Grid rows='2' gap='3'top='auto' bottom='100%'> 
                 <Heading align="center" size="7">Login</Heading>
                 <Flex direction="column" gap="3" align="center" width="100%">
                     <Textbox width='50%' placeholder='Enter your Username...' />
-                    <Textbox width='50%' placeholder='Enter your Password...' 
-                        type={viewableToString(passwordViewable)} rightIcon={viewableToIcon(passwordViewable)} />
+                    <PasswordBox width='50%' placeholder='Enter your Password...' />
                 </Flex>
             </Grid>
         </Theme>
