@@ -10,7 +10,7 @@ export default function Textbox(props) {
     return (
         <>
             <TextField.Root>
-                <TextField.Input placeholder={props.placeholder} onChange={printText} />
+                <TextField.Input placeholder={props.placeholder} onChange={printText} type={props.type}/>
                 <TextField.Slot>
                     {props.rightIcon}
                 </TextField.Slot>
