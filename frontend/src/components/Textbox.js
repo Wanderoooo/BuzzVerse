@@ -2,7 +2,7 @@ import React from "react";
 import '@radix-ui/themes/styles.css';
 import { TextField } from "@radix-ui/themes";
 
-export default function Textbox() {
+export default function Textbox(props) {
     function printText(val) {
         console.log(val.target.value)
     }
@@ -10,7 +10,10 @@ export default function Textbox() {
     return (
         <>
             <TextField.Root>
-                <TextField.Input placeholder="Type a message..." onChange={printText} />
+                <TextField.Input placeholder={props.placeholder} onChange={printText} />
+                <TextField.Slot>
+                    {props.rightIcon}
+                </TextField.Slot>
             </TextField.Root>
         </>
     )

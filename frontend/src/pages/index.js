@@ -5,8 +5,9 @@ import styles from '@/styles/Home.module.css'
 import '@radix-ui/themes/styles.css';
 import { Theme, Flex, Text, Button, ThemePanel, Grid } from '@radix-ui/themes';
 
-import Textbox from '../components/Textbox'
+import Textbox from '../components/Textbox';
 import ChatView from '@/components/ChatView';
+import './test.module.css'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -23,18 +24,27 @@ export default function Home() {
   const a = new Message('hello world', 22, "andrew");
   
   return (
+    <>
+
     
     <Theme>
-      <Grid columns={3}>
+      <Grid columns="4" className='grid' style="grid-template-columns: 1fr, 3fr;">
+        <Flex direction="column" gap="3">
+          hello
+        </Flex>
         <Flex direction="column" gap="4">
-          <ChatView messages={[a, a, a]} />
-          <Button>Let's go</Button>
+          <div className='scrollable'>
+            <ChatView messages={[a, a, a]} />
+          </div>
+          <Flex direction="row" gap="3">
+            <Textbox placeholder='type a message...'/>
+            <Button>Send</Button>
+          </Flex>
           <ThemePanel />
-          <Textbox />
         </Flex>
       </Grid>
     </Theme>
-    
+    </>
   )
 }
 
