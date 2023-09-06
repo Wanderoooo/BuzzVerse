@@ -1,24 +1,29 @@
 import React from "react";
 import '@radix-ui/themes/styles.css';
-import { Box, Flex, Grid, Theme, Text, Heading } from "@radix-ui/themes";
+import { Box, Flex, Grid, Theme, Text, Heading, Button } from "@radix-ui/themes";
 
 import Textbox from "@/components/Textbox";
 import PasswordBox from "@/components/PasswordBox";
+import { PaddingIcon } from "@radix-ui/react-icons";
 
 export default function Login() {
     
-    return (    
+    return (
         <Theme accentColor="cyan"
         grayColor="gray"
-        panelBackground="solid"
+        panelBackground="translucent"
         scaling="100%"
-        radius='large'>
-            <Grid rows='9' columns="1" gap='3' top='auto' bottom='100%' height='100%'> 
+        appearance="dark"
+        radius='large'
+        hasBackground='true'>
+            <Grid rows="4" width='auto'> 
                 <Heading align="center" size="7">Login</Heading>
                 <Flex direction="column" gap="3" align="center" width="100%" height="100%">
                     <Textbox width='50%' placeholder='Enter your Username...' />
                     <PasswordBox width='50%' placeholder='Enter your Password...' />
                 </Flex>
+                <Box height="1"></Box>
+                <Button width="50%">Log In</Button>
             </Grid>
         </Theme>
     )
