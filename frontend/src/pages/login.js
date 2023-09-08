@@ -8,6 +8,10 @@ import { PaddingIcon, SunIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
 export default function Login() {
+    const usernameField = <Textbox width='50%' placeholder='Enter your Username...' />;
+    const passwordField = <PasswordBox width='50%' placeholder='Enter your Password...' />;
+    console.log(usernameField.value) //testing to access username field value
+    console.log(passwordField.value) //testing to access password field value
     
     return (
         <Theme accentColor="cyan"
@@ -17,17 +21,22 @@ export default function Login() {
         appearance="dark"
         radius='large'
         hasBackground='true'>
-            <Grid rows="5" width='auto'> 
-                <div align='right'>
-                    <Link underline='hover' href='./test' color="blue">Sign up</Link>
-                </div>
-                <Heading align="center" size="7">Login</Heading>
-                <Flex direction="column" gap="3" align="center" width="100%" height="100%">
-                    <Textbox width='50%' placeholder='Enter your Username...' />
-                    <PasswordBox width='50%' placeholder='Enter your Password...' />
+            <Grid rows="5"> 
+                <Box align='right' p='4'>
+                    <Link underline='hover' href='./signup' color="blue" m='4'>Sign up</Link>
+                </Box>
+                <Heading align="center" size="8" p='4'>Login</Heading>
+                <Flex direction="column" p='4' align="center">
+                    <Text>Username:</Text>
+                    {usernameField}
                 </Flex>
-                <Box height="1"></Box>
-                <Button width="50%">Log In</Button>
+                <Flex direction="column" p='4' align="center">
+                    <Text>Password:</Text>
+                    {passwordField} 
+                </Flex>
+                <Flex align='center' direction='column' p='4'>
+                    <Button width="50%">Log In</Button>
+                </Flex>
             </Grid>
         </Theme>
     )
