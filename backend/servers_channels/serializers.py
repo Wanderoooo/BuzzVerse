@@ -10,3 +10,5 @@ class ChannelSerializer(serializers.ModelSerializer):
     class Meta:
         model = Channel
         fields = ['name', 'server']
+        
+        
