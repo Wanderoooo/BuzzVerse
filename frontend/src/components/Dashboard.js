@@ -16,10 +16,15 @@ export class Message {
 
 
 export default function DashBoard() {
-    const sendBox = <Textbox placeholder='Type a message...'/>;
+    const sendBox = <Textbox placeholder='Type a message...' change={getSendContent}/> ;
     const [messages, setMessages] = React.useState([]);
+    const [sendContent, setSendContent] = React.useState('');
 
     const chat = <ChatView messages={messages} />;
+
+    function getSendContent(val) {
+        setSendContent(val.target.value);
+    }
 
     function sendTextMessage(text) {
         console.log(text);
@@ -51,7 +56,7 @@ export default function DashBoard() {
             </div>
             <Flex direction="row" gap="4">
                 {sendBox}
-                <Button onClick={() => sendTextMessage(sendBox.value)}>Send</Button>
+                <Button onClick={() => sendTextMessage(sendContent)}>Send</Button>
             </Flex>
             </Flex>
         </Grid>

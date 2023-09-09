@@ -11,7 +11,7 @@ export default function Textbox(props) {
     return (
         <>
             <TextField.Root>
-                <TextField.Input placeholder={props.placeholder} onChange={printText} />
+                <TextField.Input placeholder={props.placeholder} onChange={props.change} />
             </TextField.Root>
         </>
     )
