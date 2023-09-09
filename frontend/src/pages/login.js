@@ -2,10 +2,11 @@ import React from "react";
 import '@radix-ui/themes/styles.css';
 import { Box, Flex, Grid, Theme, Text, Heading, Button } from "@radix-ui/themes";
 
-import Textbox from "@/components/Textbox";
-import PasswordBox from "@/components/PasswordBox";
-import { PaddingIcon, SunIcon } from "@radix-ui/react-icons";
+import Textbox from "@/components/input/Textbox";
+import PasswordBox from "@/components/input/PasswordBox";
 import Link from "next/link";
+
+
 
 export default function Login() {
     const usernameField = <Textbox width='50%' placeholder='Enter your Username...' />;
@@ -22,7 +23,7 @@ export default function Login() {
         radius='large'
         hasBackground='true'>
             <Grid rows="5"> 
-                <Box align='right' p='4'>
+                <Box align='right' p='3'>
                     <Link underline='hover' href='./signup' color="blue" m='4'>Sign up</Link>
                 </Box>
                 <Heading align="center" size="8" p='4'>Login</Heading>

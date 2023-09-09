@@ -2,13 +2,15 @@ import React from "react";
 import '@radix-ui/themes/styles.css';
 import { Flex, Grid, Theme, Text, Heading, ThemePanel, Button, Box } from "@radix-ui/themes";
 import Link from "next/link";
-import Textbox from "@/components/Textbox";
-import PasswordBox from "@/components/PasswordBox";
+import Textbox from "@/components/input/Textbox";
+import PasswordBox from "@/components/input/PasswordBox";
 
 export default function Signup() {
     const usernameField = <Textbox placeholder='Enter your username...' padding='30px' />;
     const passwordField = <PasswordBox placeholder='Enter your password...'/>;
     const passwordCheckField = <PasswordBox placeholder='Re-enter your password...'/>;
+
+    console.log(usernameField.value())
 
     function createUser(username, password) {
 

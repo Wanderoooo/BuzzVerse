@@ -5,6 +5,7 @@ import { Box, Flex } from "@radix-ui/themes";
 
 // takes a list of messages sorted by time, with messages[0] as the latest message
 export default function ChatView({messages}) {
+
     return (
         <Flex direction="column" gap="3">
             {messages.map((msg) => {

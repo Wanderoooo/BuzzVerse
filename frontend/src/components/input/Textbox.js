@@ -1,7 +1,6 @@
 import React from "react";
 import '@radix-ui/themes/styles.css';
 import { TextField } from "@radix-ui/themes";
-import { EyeOpenIcon, EyeNoneIcon} from '@radix-ui/react-icons'
 
 export default function Textbox(props) {
 
