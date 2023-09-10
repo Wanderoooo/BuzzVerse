@@ -9,10 +9,6 @@ export default function Textbox(props) {
     }
 
     return (
-        <>
-            <TextField.Root>
-                <TextField.Input placeholder={props.placeholder} onChange={props.change} />
-            </TextField.Root>
-        </>
+        <TextField.Input placeholder={props.placeholder} onChange={props.change} variant={props.variant} width={props.width}/>
     )
 }

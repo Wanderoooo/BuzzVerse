@@ -17,6 +17,13 @@ export class MessagingServer {
   }
 }
 
+export class Friend {
+  constructor(name, user) {
+    this.name = name;
+    this.user = user;
+  }
+}
+
 
 export default function App({ Component, pageProps }) {
   return <Component{...pageProps} />
