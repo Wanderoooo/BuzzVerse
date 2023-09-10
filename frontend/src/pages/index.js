@@ -6,7 +6,7 @@ import '@radix-ui/themes/styles.css';
 import { Theme, Flex, Text, Button, ThemePanel, Grid } from '@radix-ui/themes';
 
 import Textbox from '../components/input/Textbox';
-import ChatView from '@/components/ChatView';
+import ChatView from '@/components/display/ChatView';
 import './test.module.css'
 
 

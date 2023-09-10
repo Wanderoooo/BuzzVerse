@@ -2,16 +2,11 @@ import React from "react";
 import '@radix-ui/themes/styles.css'
 import { Theme, Grid, Flex, Button } from "@radix-ui/themes";
 import Textbox from "@/components/input/Textbox";
-import ChatView from "@/components/ChatView";
+import ChatView from "@/components/display/ChatView";
+import { Message } from "@/pages/_app";
+import { LeftMenu } from "./LeftMenu";
 
 
-export class Message {
-    constructor(text, time, author) {
-        this.text = text;
-        this.time = time;
-        this.author = author;
-    }
-}
 
 
 
@@ -46,11 +41,11 @@ export default function DashBoard() {
         appearance="dark"
         radius='large'
         hasBackground='true'>
-        <Grid columns="4" className='grid'>
-            <Flex direction="column" gap="4">
-            hello
+        <Grid columns="3">
+            <Flex direction="column" gap="4" width='100%'>
+                <LeftMenu />
             </Flex>
-            <Flex direction="column" gap="4">
+            <Flex direction="column" gap="4" width='100%'>
             <div className='scrollable'>
                 {chat}
             </div>

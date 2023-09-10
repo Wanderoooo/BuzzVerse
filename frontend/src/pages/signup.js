@@ -10,8 +10,6 @@ export default function Signup() {
     const passwordField = <PasswordBox placeholder='Enter your password...'/>;
     const passwordCheckField = <PasswordBox placeholder='Re-enter your password...'/>;
 
-    console.log(usernameField.value())
-
     function createUser(username, password) {
 
     }
