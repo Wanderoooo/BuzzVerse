@@ -1,6 +1,6 @@
 import React from "react";
 import '@radix-ui/themes/styles.css'
-import { Theme, Grid, Flex, Button, ThemePanel, Separator, Text } from "@radix-ui/themes";
+import { Theme, Grid, Flex, Button, ThemePanel, Separator, Text, Heading } from "@radix-ui/themes";
 import Textbox from "@/components/input/Textbox";
 import ChatView from "@/components/display/ChatView";
 import { Message } from "@/pages/_app";
@@ -68,15 +68,18 @@ export default function DashBoard() {
   
     return (
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
-            <Text>{selectedFriend}</Text>
-            <Grid columns="4" style={{gridTemplateColumns:'1fr 2fr 8fr 4fr'}} m='4' gap='4'>
+            <Grid columns="6" style={{gridTemplateColumns:'1fr 0.1fr 2fr 0.1fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu />
                 </Flex>
+                <Separator orientation="vertical" size='4'/>
                 <Flex direction='column' gap='4'>
                     <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>
                 </Flex>
+                <Separator orientation="vertical" size='4'/>
                 <Flex direction="column" gap="4">
+                    <Heading>Chat with {friendList[selectedFriend].name}</Heading>
+                    <Separator orientation="horizontal" size='4' />
                     <div className='scrollable'>
                         {chat}
                     </div>
