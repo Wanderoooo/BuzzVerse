@@ -25,7 +25,7 @@ class TextViewSet(viewsets.ModelViewSet):
 
 class TextsInChannelView(APIView):
     
-    def get(self, request, channel_id):
+    def get(self, request, channel_id, server_id):
         try:
             channel = Channel.objects.get(id=channel_id)
             texts = Text.objects.filter(channel_id=channel_id)

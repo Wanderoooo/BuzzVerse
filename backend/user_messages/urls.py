@@ -8,5 +8,5 @@ router.register(r'texts', TextViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('texts/inchannel/<int:channel_id>/', TextsInChannelView.as_view(), name='channel-texts')
+    path('servers/<int:server_id>/channels/<int:channel_id>/texts', TextsInChannelView.as_view(), name='channel-texts')
 ]

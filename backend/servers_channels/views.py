@@ -43,11 +43,22 @@ class ChannelViewSet(viewsets.ModelViewSet):
 
 class ChannelsInServerView(APIView):
 
-    def get(self, request, server_id):
+    def get(self, request, server_id, channel_id=None):
         try:
             server = Server.objects.get(id=server_id)
+        except Server.DoesNotExist:
+            return Response({"error": "Server not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if channel_id is not None:
+            try:
+                channel = Channel.objects.get(server=server, channel_id=channel_id)
+                serializer = ChannelSerializer(channel)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            except Channel.DoesNotExist:
+                return Response({"error": "Channel not found"}, status=status.HTTP_404_NOT_FOUND)
+        else:
             channels = Channel.objects.filter(server=server)
             serializer = ChannelSerializer(channels, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
-        except Server.DoesNotExist:
-            return Response({"error": "Server not found"}, status=status.HTTP_404_NOT_FOUND)
+
+
