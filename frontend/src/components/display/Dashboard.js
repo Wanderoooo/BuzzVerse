@@ -33,13 +33,30 @@ export default function DashBoard() {
     
     const [sendContent, setSendContent] = React.useState('');
 
+    const [selectedLeftMenu, setSelectedLeftMenu] = React.useState(0); //0 -> friends, 1 onwards -> servers
+
     const chat = <ChatView messages={messages[selectedFriend]} />;
+    
 
     function getSendContent(val) {
+        document.addEventListener('keydown', function(event){
+            if (event.key == 'Enter') {
+                console.log(sendContent);
+                sendTextMessage(sendContent);
+            }
+        })
+        
         setSendContent(val.target.value);
+        console.log(sendContent);
+
     }
 
     function sendTextMessage(text) {
+        
+
+        if (sendContent == undefined) {
+            return;
+        }
         console.log(text);
         const res = [];
         for (let i = 0; i < messages[selectedFriend].length; i++) {
@@ -59,6 +76,7 @@ export default function DashBoard() {
         }
         setMessages(copy);
         document.getElementById('sendBox').value = "";
+        setSendContent(undefined);
     } 
 
     let onClickFriendFunctions = [];
@@ -68,13 +86,15 @@ export default function DashBoard() {
 
   
     return (
+        
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
-            <Grid columns="6" style={{gridTemplateColumns:'1fr 0.1fr 2fr 0.1fr 8fr 4fr'}} m='4' gap='4'>
+            <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu />
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
                 <Flex direction='column' gap='4'>
+                    
                     <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
@@ -87,7 +107,7 @@ export default function DashBoard() {
                     <Flex direction="row" gap="4">
                         {sendBox}
                         <div style={{marginRight:'0', marginLeft:'auto'}}>
-                            <Button onClick={() => sendTextMessage(sendContent)} >Send</Button>
+                            <Button onClick={() => sendTextMessage(sendContent)}>Send</Button>
                         </div>
                     </Flex>
                 </Flex>
