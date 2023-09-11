@@ -13,7 +13,7 @@ import { Friend } from "@/pages/_app";
 
 
 export default function DashBoard() {
-    const sendBox = <Textbox placeholder='Type a message...' change={getSendContent} variant='soft' style={{width:'2000px'}}/> ;
+    const sendBox = <Textbox placeholder='Type a message...' id='sendBox' change={getSendContent} variant='soft' style={{width:'2000px'}}/> ;
     
     // fake friend data
     const testFriend = new Friend('leon liang', 'leon');
@@ -58,7 +58,8 @@ export default function DashBoard() {
             copy.push(messages[i])
         }
         setMessages(copy);
-    }
+        document.getElementById('sendBox').value = "";
+    } 
 
     let onClickFriendFunctions = [];
     for (let i = 0; i < friendList.length; i++) {
