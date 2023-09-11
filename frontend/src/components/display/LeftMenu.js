@@ -22,7 +22,7 @@ export function LeftMenu(props) {
                 </Avatar.Root>
                 <Separator orientation="horizontal" size='3'/>
                 {serverList.map((server) => 
-                    <img src={server.icon} alt={server.name} width='65px' />
+                    <img src={server.icon} alt={server.name} width='65px' key={'server' + server.name}/>
                 )}
             </Flex>
         </Theme>

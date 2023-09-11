@@ -9,7 +9,7 @@ export default function FriendsMenu(props) {
     return (
         <Flex direction='column' gap='3'>
             {props.friendList.map((friend) => 
-                <FriendButton name={props.friendList[props.friendList.indexOf(friend)].name} id={props.friendList.indexOf(friend)} 
+                <FriendButton name={props.friendList[props.friendList.indexOf(friend)].name} key={props.friendList.indexOf(friend)} 
                     onClick={props.clicks[props.friendList.indexOf(friend)]}/>
             )}
         </Flex>
