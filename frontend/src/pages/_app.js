@@ -10,10 +10,11 @@ export class Message {
 }
 
 export class MessagingServer {
-  constructor(name, icon, memberList) {
+  constructor(name, icon, memberList, channels) {
     this.name = name;
     this.icon = icon;
     this.memberList = memberList;
+    this.channels = channels;
   }
 }
 
@@ -23,7 +24,6 @@ export class Friend {
     this.user = user;
   }
 }
-
 
 export default function App({ Component, pageProps }) {
   return <Component{...pageProps} />
