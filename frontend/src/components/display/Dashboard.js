@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import '@radix-ui/themes/styles.css'
 import { Theme, Grid, Flex, Button, ThemePanel, Separator, Text, Heading } from "@radix-ui/themes";
 import Textbox from "@/components/input/Textbox";
@@ -6,7 +7,8 @@ import ChatView from "@/components/display/ChatView";
 import { Message } from "@/pages/_app";
 import { LeftMenu } from "./LeftMenu";
 import FriendsMenu from "./FriendsMenu";
-import { Friend } from "@/pages/_app";
+import { Friend, MessagingServer } from "@/pages/_app";
+import ServerMenu from "./ServerMenu";
 
 
 
@@ -22,29 +24,45 @@ export default function DashBoard() {
     const testFriend4 = new Friend('hanson sun', 'hanson');
     const testFriend5 = new Friend('stanley', 'stan');
     const testFriend6 = new Friend('brandon', 'kyspire');
-    const [friendList, setFriendList] = React.useState([testFriend, testFriend2, testFriend3, testFriend4, testFriend5 ]);
-    const [selectedFriend, setSelectedFriend] = React.useState(0);
+    const [friendList, setFriendList] = useState([testFriend, testFriend2, testFriend3, testFriend4, testFriend5 ]);
+    const [selectedFriend, setSelectedFriend] = useState(0);
 
     let initalMessages = [];
     for (let i = 0; i < friendList.length; i++) {
         initalMessages.push([]);
     }
-    const [messages, setMessages] = React.useState(initalMessages); //ith element in messages is an array of messages with the ith friend
+    const [messages, setMessages] = useState(initalMessages); //ith element in messages is an array of messages with the ith friend
     
-    const [sendContent, setSendContent] = React.useState('');
+    const [sendContent, setSendContent] = useState('');
 
-    const [selectedLeftMenu, setSelectedLeftMenu] = React.useState(0); //0 -> friends, 1 onwards -> servers
+    function renderServer(server) {
+        if (server == 'friends') {
+            return <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>;
+        } else {
+            return (
+                <ServerMenu serverList={serverList}/>
+            )
+        }
+    }
+
+
+    const testServer1 = new MessagingServer('twitter gang', 'https://cdn-icons-png.flaticon.com/512/124/124021.png', [], ['kys', 'pee']);
+    const testServer2 = new MessagingServer('ig', 'https://cdn-icons-png.flaticon.com/512/2111/2111463.png', ['coding', 'nsfw']);
+    const [selectedServer, setSelectedServer] = useState(0); //0 -> friends, 1 onwards -> servers
+    const [serverList, setServerList] = useState(['friends', testServer1, testServer2]); //serverList[0] = friends list, 1 onwards -> actual servers
 
     const chat = <ChatView messages={messages[selectedFriend]} />;
-    
 
     function getSendContent(val) {
         document.addEventListener('keydown', function(event){
             if (event.key == 'Enter') {
                 console.log(sendContent);
+                
                 sendTextMessage(sendContent);
-            }
+            } // I CANT FIX THIS BUG IVE SPENT TOO LONG ON IT SOMEONE PLEASE FIX IT IT HAS TO DO WITH THE FACT THAT SETSTATE IS ASYNCHRONOUS
+                // SO THE STATE ISNT UPDATED PROPERLY BEFORE THE MESSAGE IS SENT 
         })
+        
         
         setSendContent(val.target.value);
         console.log(sendContent);
@@ -90,12 +108,12 @@ export default function DashBoard() {
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
-                    <LeftMenu />
+                    <LeftMenu serverList={serverList} onClick={() => setSelectedServer(1)}/>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
-                <Flex direction='column' gap='4'>
-                    
-                    <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>
+                {/* left menu */}
+                <Flex direction='column' gap='4'> 
+                    {renderServer(serverList[selectedServer])}
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
                 <Flex direction="column" gap="4">

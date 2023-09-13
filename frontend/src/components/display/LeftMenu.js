@@ -7,9 +7,8 @@ import checkIcon from "../../assets/checkIcon.png"
 
 
 export function LeftMenu(props) {
-    const testServer1 = new MessagingServer('check', 'https://cdn-icons-png.flaticon.com/512/124/124021.png', []);
-    const testServer2 = new MessagingServer('ig', 'https://cdn-icons-png.flaticon.com/512/2111/2111463.png', []);
-    const [serverList, setServerList] = React.useState([testServer1, testServer2]); //replace with props.serverList later
+    
+    const [serverList, setServerList] = React.useState(props.serverList);
 
     return (
         <Theme>
@@ -22,7 +21,7 @@ export function LeftMenu(props) {
                 </Avatar.Root>
                 <Separator orientation="horizontal" size='3'/>
                 {serverList.map((server) => 
-                    <img src={server.icon} alt={server.name} width='65px' key={'server' + server.name}/>
+                    <img src={server.icon} alt={server.name} width='65px' key={'server' +server.name} onClick={props.onclick}/>
                 )}
             </Flex>
         </Theme>

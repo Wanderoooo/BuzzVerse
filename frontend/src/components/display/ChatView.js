@@ -4,13 +4,13 @@ import { Text, Flex } from "@radix-ui/themes";
 
 
 // takes a list of messages sorted by time, with messages[0] as the latest message
-export default function ChatView({messages}) {
+export default function ChatView(props) {
 
     return (
         <Flex direction="column" gap="3">
-            {messages.map((msg) => {
+            {props.messages.map((msg) => {
              return (
-                   <Text align='right'>{msg.text}</Text>
+                   <Text align='right' key={props.username + ''}>{msg.text}</Text>
                 )})}
         </Flex>
     )
