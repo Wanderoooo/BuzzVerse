@@ -40,7 +40,7 @@ export default function DashBoard() {
             return <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>;
         } else {
             return (
-                <ServerMenu serverList={serverList}/>
+                <ServerMenu serverList={serverList.slice(1)} clicks={[]}/>
             )
         }
     }
@@ -106,6 +106,7 @@ export default function DashBoard() {
     return (
         
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
+            <Text>{selectedServer}</Text>
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu serverList={serverList} onClick={() => setSelectedServer(1)}/>
@@ -125,7 +126,7 @@ export default function DashBoard() {
                     <Flex direction="row" gap="4">
                         {sendBox}
                         <div style={{marginRight:'0', marginLeft:'auto'}}>
-                            <Button onClick={() => sendTextMessage(sendContent)}>Send</Button>
+                            <Button onClick={() => setSelectedServer(1)}>Send</Button>
                         </div>
                     </Flex>
                 </Flex>
