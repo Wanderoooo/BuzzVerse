@@ -43,5 +43,17 @@ A full-stack chat application based on the popular "chat server" concept. Front-
 - Pages -> ‘pages’ folder
 - Images -> ‘assets’ folder (if not work put in ‘public’ folder)
 
+## How to Start the Backend Server
+1. First, `cd` into `backend/`
+2. Create a virtual environment with `python -m venv .venv` on MacOS or `py -m venv .venv` on Windows
+  - Don't take my word on Windows because I don't use Windows
+3. Activate the virtual environment with `source .venv/bin/activate` on MacOS or `.venv\Scripts\activate` on Windows
+4. Activate the virtual environment whenever you're working on the project and enter `deactivate` in the command line when you've finished work on it
+5. Now, install the dependences with `pip install -r requirements.txt`
+6. In the `backend/` root, start the server with `python manage.py runserver`
+7. When you add new dependencies, add them to `requirements.txt` with `pip freeze > requirements.txt` (make sure you're inside the virtual environment)
+8. Bon app-petite
+
+
 ## TODO
 See project tab.
