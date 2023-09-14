@@ -6,9 +6,9 @@ import FriendChannelButton from "../input/FriendChannelButton";
 export default function ServerMenu(props) {
     return (
         <Flex direction='column' gap='3'>
-            {props.serverList.map((server) => 
-                <FriendChannelButton name={props.serverList[props.serverList.indexOf(server)].name} key={props.serverList.indexOf(server) + 'server'} 
-                    onClick={props.clicks[props.serverList.indexOf(server)]}/>
+            {props.channelList.map((channel) => 
+                <FriendChannelButton name={props.channelList[props.channelList.indexOf(channel)]} key={props.channelList.indexOf(channel) + 'channel'} 
+                    onClick={props.clicks[props.channelList.indexOf(channel)]}/>
             )}
         </Flex>
     )

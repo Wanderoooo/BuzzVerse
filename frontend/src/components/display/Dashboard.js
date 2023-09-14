@@ -40,7 +40,7 @@ export default function DashBoard() {
             return <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>;
         } else {
             return (
-                <ServerMenu serverList={serverList.slice(1)} clicks={[]}/>
+                <ServerMenu channelList={serverList[selectedServer].channels} clicks={onClickServerFunctions}/>
             )
         }
     }
@@ -60,7 +60,7 @@ export default function DashBoard() {
                 
                 sendTextMessage(sendContent);
             } // I CANT FIX THIS BUG IVE SPENT TOO LONG ON IT SOMEONE PLEASE FIX IT IT HAS TO DO WITH THE FACT THAT SETSTATE IS ASYNCHRONOUS
-                // SO THE STATE ISNT UPDATED PROPERLY BEFORE THE MESSAGE IS SENT 
+                // SO THE STATE ISNT UPDATED PROPERLY BEFORE THE MESSAGE IS SENT 🥲🥲🥲🥲🥲😡🤬
         })
         
         
@@ -100,6 +100,11 @@ export default function DashBoard() {
     let onClickFriendFunctions = [];
     for (let i = 0; i < friendList.length; i++) {
         onClickFriendFunctions.push(() => setSelectedFriend(i));
+    }
+
+    let onClickServerFunctions = [];
+    for (let i = 0; i < serverList.length; i++) {
+        onClickFriendFunctions.push(() => setSelectedServer(i));
     }
 
   
