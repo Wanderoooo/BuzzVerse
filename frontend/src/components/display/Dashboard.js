@@ -40,7 +40,7 @@ export default function DashBoard() {
             return <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>;
         } else {
             return (
-                <ServerMenu channelList={serverList[selectedServer].channels} clicks={onClickServerFunctions}/>
+                <ServerMenu channelList={serverList[selectedServer].channels} clicks={onClickServerFunctions}/> //fix clicks
             )
         }
     }
@@ -101,12 +101,11 @@ export default function DashBoard() {
     for (let i = 0; i < friendList.length; i++) {
         onClickFriendFunctions.push(() => setSelectedFriend(i));
     }
-
+    
     let onClickServerFunctions = [];
     for (let i = 0; i < serverList.length; i++) {
-        onClickFriendFunctions.push(() => setSelectedServer(i));
+        onClickServerFunctions.push(() => setSelectedServer(i));
     }
-
   
     return (
         
@@ -114,7 +113,7 @@ export default function DashBoard() {
             <Text>{selectedServer}</Text>
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
-                    <LeftMenu serverList={serverList} onClick={() => setSelectedServer(1)}/>
+                    <LeftMenu serverList={serverList} clicks={onClickServerFunctions}/>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
                 {/* left menu */}
@@ -131,7 +130,7 @@ export default function DashBoard() {
                     <Flex direction="row" gap="4">
                         {sendBox}
                         <div style={{marginRight:'0', marginLeft:'auto'}}>
-                            <Button onClick={() => setSelectedServer(1)}>Send</Button>
+                            <Button onClick={() => sendTextMessage(sendContent)}>Send</Button>
                         </div>
                     </Flex>
                 </Flex>
