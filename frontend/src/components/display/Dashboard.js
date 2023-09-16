@@ -37,8 +37,13 @@ export default function DashBoard() {
 
     function renderServer(server) {
         if (server == 'friends') {
-            return <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>;
+            return (
+                <FriendsMenu friendList={friendList} clicks={onClickFriendFunctions}/>
+            )
         } else {
+            console.log(selectedServer);
+            console.log(serverList[selectedServer]);
+            console.log(serverList[selectedServer].channels);
             return (
                 <ServerMenu channelList={serverList[selectedServer].channels} clicks={onClickServerFunctions}/> //fix clicks
             )
@@ -47,7 +52,7 @@ export default function DashBoard() {
 
 
     const testServer1 = new MessagingServer('twitter gang', 'https://cdn-icons-png.flaticon.com/512/124/124021.png', [], ['kys', 'pee']);
-    const testServer2 = new MessagingServer('ig', 'https://cdn-icons-png.flaticon.com/512/2111/2111463.png', ['coding', 'nsfw']);
+    const testServer2 = new MessagingServer('ig', 'https://cdn-icons-png.flaticon.com/512/2111/2111463.png', [], ['coding', 'nsfw']);
     const [selectedServer, setSelectedServer] = useState(0); //0 -> friends, 1 onwards -> servers
     const [serverList, setServerList] = useState(['friends', testServer1, testServer2]); //serverList[0] = friends list, 1 onwards -> actual servers
 
