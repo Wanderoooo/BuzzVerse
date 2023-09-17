@@ -9,9 +9,12 @@ from rest_framework.views import APIView
 from .models import UserProfile
 from .serializers import UserSerializer, UserProfileSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 
 class UserCreateView(APIView):
-     def post(self, request):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -26,6 +29,7 @@ class UserCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserLoginView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')

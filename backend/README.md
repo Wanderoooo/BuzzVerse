@@ -147,8 +147,8 @@ export default SignupComponent;
 - User Profile: http://localhost:8000/profile/
 
 ### Token Routes:
-- Obtain Token: http://localhost:8000/api/token/
-- Refresh Token: http://localhost:8000/api/token/refresh/
+- Obtain Token: http://localhost:8000/auth/token/
+- Refresh Token: http://localhost:8000/auth/token/refresh/
 
 ### User Messages Routes:
 
