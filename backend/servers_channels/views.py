@@ -31,15 +31,18 @@ class ServerViewSet(viewsets.ModelViewSet):
         else:
             return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
     
-    def create(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            serializer = ServerSerializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+def create(self, request, *args, **kwargs):
+    if request.user.is_authenticated:
+        user_profile = UserProfile.objects.get(user=request.user)
+        serializer = ServerSerializer(data=request.data)
+        if serializer.is_valid():
+            server = serializer.save()
+            server.user_profiles.add(user_profile)  # Automatically add the user's profile
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+
 
 
 class ChannelViewSet(viewsets.ModelViewSet):

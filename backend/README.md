@@ -51,6 +51,14 @@ export default api;
 Now we have created our base api
 
 ## User Management
+To check if all data, including users, are created successfully, make a superuser
+
+```bash
+py manage.py createsuperuser
+```
+
+then, log-in to localhost:8000/admin to see all models (data bases)
+
 For authentication, we will use a JWT token. Each user has a unique token, and it is passed back to api to gain access user data after signin. 
 
 The following is a demo of how to retrieve user data in your signin form, tailor to your components
@@ -140,7 +148,42 @@ const SignupComponent = () => {
 export default SignupComponent;
 ```
 
+To log out users, remove authentication token from local storage
+
+```javascript
+localStorage.removeItem('access_token');
+```
+
 ## API routes
+#### I have included a demo in demo.js file in pages folder. Open console to see logged out response from api
+
+Whenever you call the api for information, you need to include the authentication token received when logged in from localStorage. For example:
+
+```javascript
+import api from './api.js';
+
+async function getUserServers() {
+  try {
+    const token = localStorage.getItem('access_token');
+    
+    if (!token) {
+      throw new Error('Authentication token is not available');
+    }
+
+    const response = await api.get('servers/', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error fetching servers:', error);
+  }
+}
+
+```
+
 ### User Management Routes:
 - Signup: http://localhost:8000/signup/
 - Login: http://localhost:8000/login/
@@ -167,3 +210,30 @@ export default SignupComponent;
 
 ### Admin Route:
 - Admin Panel: http://localhost:8000/admin/
+
+## POST (update/create) data
+To create new data, refer to datarelationships.png for what fields to include. 
+
+All objects contain auto-generated unique id 
+
+(NOTE: in Channel class, we have a field channel_id which is unique within a server but not unique overall. However, it does have an id field which is unique). 
+
+Let's say we want to create a new server:
+
+```javascript
+axios.post('http://localhost:8000/servers/', { 
+    name: 'New Server Name', 
+    description: 'Description',
+}, {
+    headers: {
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+    }
+})
+.then(response => {
+    console.log('Server created:', response.data);
+})
+.catch(error => {
+    console.error('Error creating server:', error);
+});
+
+```
