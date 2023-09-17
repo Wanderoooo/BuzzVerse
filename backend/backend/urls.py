@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('servers_channels/', include('servers_channels.urls')),
-     path('user_messages/', include('user_messages.urls')),
+    path('user_messages/', include('user_messages.urls')),
+    path("auth/", include("jwt_auth.api.urls"))
 ]
