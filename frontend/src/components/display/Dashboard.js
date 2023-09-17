@@ -120,10 +120,15 @@ export default function DashBoard() {
     for (let i = 0; i < friendList.length; i++) {
         onClickChannelFunctions.push(() => setSelectedChannel(i));
     }
+
+    function changeServer(server) {
+        setSelectedChannel(0);
+        setSelectedServer(server);
+    }
     
     let onClickServerFunctions = [];
     for (let i = 0; i < serverList.length; i++) {
-        onClickServerFunctions.push(() => setSelectedServer(i));
+        onClickServerFunctions.push(() => changeServer(i));
     }
 
     function renderHeader(friendSelected, channel) {
