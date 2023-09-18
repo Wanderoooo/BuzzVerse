@@ -8,5 +8,7 @@ router.register(r'channels', ChannelViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('channels/inserver/<int:server_id>/', ChannelsInServerView.as_view(), name='server-channels'),
+    path('servers/<int:server_id>/channels/', ChannelsInServerView.as_view(), name='channels-in-server'),
+    path('servers/<int:server_id>/channels/<int:channel_id>/', ChannelsInServerView.as_view(), name='specific-channel-in-server'),
+    path('', include('users.urls'))
 ]
