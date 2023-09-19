@@ -1,6 +1,6 @@
 import React from "react";
 import '@radix-ui/themes/styles.css';
-import { Text, Flex, Separator } from "@radix-ui/themes";
+import { Text, Flex, Separator, Tooltip, Avatar } from "@radix-ui/themes";
 import { Message } from "@/pages/_app";
 
 
