@@ -141,8 +141,6 @@ export default function DashBoard() {
     return (
         
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
-            <Text>Selected Server: {selectedServer}  </Text>
-            <Text>Selected Channel: {selectedChannel}</Text>
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu serverList={serverList} clicks={onClickServerFunctions}/>
