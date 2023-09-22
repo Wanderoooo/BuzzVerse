@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('servers_channels.urls')),
     path('', include('user_messages.urls')),
-    path("auth/", include("jwt_auth.api.urls"))
+    path("auth/", include("jwt_auth.api.urls")),
+    path("chat/", include("chat.urls"))
 ]

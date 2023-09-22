@@ -237,3 +237,16 @@ axios.post('http://localhost:8000/servers/', {
 });
 
 ```
+
+## Chat notes
+Here on some general instructions on how to test the developmental chat feature (make sure to install the new dependencies).
+- start server
+- Chat: http://127.0.0.1:8000/chat/
+- join a chat room with the same name and start sending messages
+
+### Improvements:
+- scalable channels with redis or similar (we might need to use docker then)
+- integration with the rest of the components
+- link instructions with websockets for front end to use.
+- storage of message data into databases
+- refine the consumers and how the chat interacts with the rest of the application

@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'chat',
     'users',
     'user_messages',
     'servers_channels',
@@ -188,3 +190,16 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# need this to enable the async channels
+# https://channels.readthedocs.io/en/stable/tutorial/part_1.html
+ASGI_APPLICATION = "backend.asgi.application"
+
+# i really dont want to use redis 
+# https://channels.readthedocs.io/en/stable/topics/channel_layers.html
+# it is recommended that we migrate to a tool like redis for better scalability
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
