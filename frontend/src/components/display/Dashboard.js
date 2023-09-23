@@ -193,19 +193,25 @@ export default function DashBoard() {
                             variant={"classic"}
                             width={{width: 300}}
                         /> */}
-                        
+
                         <TextField.Root>
                             <TextField.Input
+                                id="messageInput"
                                 placeholder="Type a message..."
                                 value={message}
-                                onChange={e => {setMessage(e.target.value)}}
+                                onChange={(event) =>
+                                    setMessage(event.target.value)
+                                }
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter") {
+                                        sendTextMessage();
+                                    }
+                                }}
                             />
                         </TextField.Root>
 
                         <div style={{ marginRight: "0", marginLeft: "auto" }}>
-                            <Button
-                                onClick={() => sendTextMessage()}
-                            >
+                            <Button onClick={() => sendTextMessage()}>
                                 Send
                             </Button>
                         </div>
