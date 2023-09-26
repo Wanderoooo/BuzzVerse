@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import '@radix-ui/themes/styles.css'
-import { Theme, Grid, Flex, Button, ThemePanel, Separator, Text, Heading } from "@radix-ui/themes";
+import { Theme, Grid, Flex, Button, Separator, Text, Heading } from "@radix-ui/themes";
 import Textbox from "@/components/input/Textbox";
 import ChatView from "@/components/display/ChatView";
 import { Message } from "@/pages/_app";
@@ -23,7 +23,6 @@ export default function DashBoard() {
     const testFriend3 = new Friend('arthur guo', 'dawg');
     const testFriend4 = new Friend('hanson sun', 'hanson');
     const testFriend5 = new Friend('stanley', 'stan');
-    const testFriend6 = new Friend('brandon', 'kyspire');
     const [friendList, setFriendList] = useState([testFriend, testFriend2, testFriend3, testFriend4, testFriend5 ]);
     const [selectedChannel, setSelectedChannel] = useState(0);
     
