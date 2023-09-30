@@ -17,6 +17,10 @@ export default function Signup() {
     //     }
     // }
 
+    const logOut = () => {
+        localStorage.removeItem('access_token');
+    };
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         console.log('name:'+name);
@@ -31,6 +35,7 @@ export default function Signup() {
       const handleSignup = async () => {
         try {
             if (formData.password !== formData.checkPassword) {
+                // TODO: warn user
                 return;
             }
             const response = await createUser({username: formData.username, password: formData.password});
@@ -42,6 +47,7 @@ export default function Signup() {
 
     const createUser = async (userData) => {
         try {
+            console.log(localStorage);
             const response = await api.post('signup/', userData);
             localStorage.setItem('access_token', response.data.access_token);
             return response.data;
@@ -88,6 +94,8 @@ export default function Signup() {
                 </Flex>
                 <Flex align='center' direction='column' p='4'>
                     <Button onClick={() => handleSignup()}>Sign Up</Button>
+
+                    <Button onClick={() => logOut()} m='4'>Log Out</Button>
                 </Flex>
             </Grid>
         </Theme>
