@@ -15,7 +15,7 @@ import ServerMenu from "./ServerMenu";
 
 
 export default function DashBoard() {
-    const sendBox = <Textbox placeholder='Type a message...' id='sendBox' change={getSendContent} variant='soft' style={{width:'2000px'}}/> ;
+    const sendBox = <Textbox placeholder='Type a message...' id='sendBox' onChange={getSendContent} variant='soft' style={{width:'2000px'}}/> ;
     
     // fake friend data
     const testFriend = new Friend('leon liang', 'leon');
@@ -85,7 +85,7 @@ export default function DashBoard() {
     }
 
     function sendTextMessage(text) {
-        
+        console.log(sendContent)
 
         if (sendContent == undefined) {
             return;
@@ -113,7 +113,7 @@ export default function DashBoard() {
         setMessages(newMessages);
         document.getElementById('sendBox').value = "";
         setSendContent(undefined);
-    } 
+    }
 
     let onClickChannelFunctions = [];
     for (let i = 0; i < friendList.length; i++) {
