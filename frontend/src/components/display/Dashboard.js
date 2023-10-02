@@ -31,12 +31,8 @@ export default function DashBoard() {
     const [sendContent, setSendContent] = useState('');
 
     const [username, setUsername] = useState('');
-
     useEffect(() => {
-        console.log('hello,');
-        console.log(localStorage.getItem('username'));
         setUsername(localStorage.getItem('username'));
-        console.log(username)
     });
       
     function renderServer(server) {
