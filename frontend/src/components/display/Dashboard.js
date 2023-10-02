@@ -34,6 +34,11 @@ export default function DashBoard() {
     useEffect(() => {
         setUsername(localStorage.getItem('username'));
     });
+
+    const logOut = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('username');
+    };
       
     function renderServer(server) {
         if (server == 'friends') {
@@ -143,8 +148,6 @@ export default function DashBoard() {
         }
         return <Heading># {serverList[selectedServer].channels[selectedChannel]}</Heading>
     }
-
-    console.log(username);
   
     return (
         
@@ -162,7 +165,7 @@ export default function DashBoard() {
                         {renderServer(serverList[selectedServer])} 
                     </Flex>
                     <Flex direction='column' gap='4' style={{position:'absolute', bottom:'0', width:'100%'}}>
-                        <UserProfile username={username} status='status here'/>
+                        <UserProfile username={username} status='status here' signOutOnClick={() => {logOut()}} />
                     </Flex>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>

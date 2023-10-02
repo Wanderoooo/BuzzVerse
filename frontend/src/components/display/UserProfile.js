@@ -1,7 +1,9 @@
 import React from "react";
+import SettingsMenu from "./SettingsMenu";
 import '@radix-ui/themes/styles.css'
-import { Flex, Text, Card, Box } from "@radix-ui/themes";
+import { Flex, Text, Card, Box, Dialog, Button } from "@radix-ui/themes";
 import { Avatar } from "@radix-ui/react-avatar";
+import { GearIcon } from "@radix-ui/react-icons";
 
 export default function UserProfile(props) {
     return (
@@ -21,6 +23,14 @@ export default function UserProfile(props) {
                     {props.status}
                 </Text>
                 </Box>
+                <Dialog.Root>
+                    <Dialog.Trigger>
+                        <Button><GearIcon /></Button>
+                    </Dialog.Trigger>
+                    <Dialog.Content>
+                        <SettingsMenu onClick={props.signOutOnClick}/>
+                    </Dialog.Content>
+                </Dialog.Root>
             </Flex>
         </Card>
 

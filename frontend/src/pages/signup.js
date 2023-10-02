@@ -17,11 +17,6 @@ export default function Signup() {
     //     }
     // }
 
-    const logOut = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('username');
-    };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         console.log('name:'+name);
@@ -33,7 +28,7 @@ export default function Signup() {
     const passwordField = <PasswordBox placeholder='Enter your password...' id='passwordField' name='password' onChange={handleChange}/>;
     const passwordCheckField = <PasswordBox placeholder='Re-enter your password...' id='passwordCheckField' name='checkPassword' onChange={handleChange}/>;
 
-      const handleSignup = async () => {
+    const handleSignup = async () => {
         try {
             if (formData.password !== formData.checkPassword) {
                 // TODO: warn user
@@ -42,6 +37,7 @@ export default function Signup() {
             const response = await createUser({username: formData.username, password: formData.password});
             localStorage.setItem('username', formData.username);
             console.log('User created:', response);
+            window.location.href = "./main";
         } catch (error) {
             console.error('Error:', error);
         }
@@ -67,7 +63,7 @@ export default function Signup() {
         return config;
       }, (error) => {
             return Promise.reject(error);
-      });
+    });
 
     return (
         <Theme
@@ -96,8 +92,6 @@ export default function Signup() {
                 </Flex>
                 <Flex align='center' direction='column' p='4'>
                     <Button onClick={() => handleSignup()}>Sign Up</Button>
-
-                    <Button onClick={() => logOut()} m='4'>Log Out</Button>
                 </Flex>
             </Grid>
         </Theme>
