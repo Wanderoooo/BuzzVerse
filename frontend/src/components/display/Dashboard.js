@@ -9,7 +9,9 @@ import { LeftMenu } from "./LeftMenu";
 import FriendsMenu from "./FriendsMenu";
 import { Friend, MessagingServer } from "@/pages/_app";
 import ServerMenu from "./ServerMenu";
+import UserProfile from "./UserProfile";
 
+import '../../styles/Home.module.css';
 
 
 
@@ -148,8 +150,13 @@ export default function DashBoard() {
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
                 {/* left menu */}
-                <Flex direction='column' gap='4'> 
-                    {renderServer(serverList[selectedServer])}
+                <Flex direction='column' style={{position:'relative'}}>
+                    <Flex direction='column' gap='4' style={{position:'absolute', top:'0', width:'100%'}}> 
+                        {renderServer(serverList[selectedServer])} 
+                    </Flex>
+                    <Flex direction='column' gap='4' style={{position:'absolute', bottom:'0', width:'100%'}}>
+                        <UserProfile />
+                    </Flex>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
                 <Flex direction="column" gap="4">
