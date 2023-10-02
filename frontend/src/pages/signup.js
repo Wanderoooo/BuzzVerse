@@ -19,6 +19,7 @@ export default function Signup() {
 
     const logOut = () => {
         localStorage.removeItem('access_token');
+        localStorage.removeItem('username');
     };
 
     const handleChange = (e) => {
@@ -39,6 +40,7 @@ export default function Signup() {
                 return;
             }
             const response = await createUser({username: formData.username, password: formData.password});
+            localStorage.setItem('username', formData.username);
             console.log('User created:', response);
         } catch (error) {
             console.error('Error:', error);

@@ -10,7 +10,7 @@ import FriendsMenu from "./FriendsMenu";
 import { Friend, MessagingServer } from "@/pages/_app";
 import ServerMenu from "./ServerMenu";
 import UserProfile from "./UserProfile";
-
+import api from "@/pages/api/api";
 import '../../styles/Home.module.css';
 
 
@@ -30,6 +30,15 @@ export default function DashBoard() {
     
     const [sendContent, setSendContent] = useState('');
 
+    const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        console.log('hello,');
+        console.log(localStorage.getItem('username'));
+        setUsername(localStorage.getItem('username'));
+        console.log(username)
+    });
+      
     function renderServer(server) {
         if (server == 'friends') {
             return (
@@ -87,8 +96,8 @@ export default function DashBoard() {
     }
 
     function sendTextMessage(text) {
-        console.log(sendContent)
-
+        console.log(localStorage)
+        
         if (sendContent == undefined) {
             return;
         }
@@ -138,12 +147,14 @@ export default function DashBoard() {
         }
         return <Heading># {serverList[selectedServer].channels[selectedChannel]}</Heading>
     }
+
+    console.log(username);
   
     return (
         
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
             <Text>Selected Server: {selectedServer}  </Text>
-            <Text>Selected Channel: {selectedChannel}</Text>
+            <Text>Selected Channel: {selectedChannel} </Text>
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu serverList={serverList} clicks={onClickServerFunctions}/>
@@ -155,7 +166,7 @@ export default function DashBoard() {
                         {renderServer(serverList[selectedServer])} 
                     </Flex>
                     <Flex direction='column' gap='4' style={{position:'absolute', bottom:'0', width:'100%'}}>
-                        <UserProfile />
+                        <UserProfile username={username} status='status here'/>
                     </Flex>
                 </Flex>
                 <Separator orientation="vertical" size='4'/>
