@@ -20,7 +20,7 @@ class ServerViewSet(viewsets.ModelViewSet):
             user_profile = UserProfile.objects.get(user=self.request.user)
             return Server.objects.filter(user_profiles=user_profile)
         else:
-            return Server.objects.none()  # Return an empty queryset if user is not authenticated
+            return Server.objects.all()  # Return an empty queryset if user is not authenticated
 
     def list(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -28,7 +28,10 @@ class ServerViewSet(viewsets.ModelViewSet):
             serializer = ServerSerializer(queryset, many=True)
             return Response(serializer.data)
         else:
-            return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+            queryset = self.get_queryset()
+            serializer = ServerSerializer(queryset, many=True)
+            return Response(serializer.data)
+        # Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
     
 def create(self, request, *args, **kwargs):
     if request.user.is_authenticated:
