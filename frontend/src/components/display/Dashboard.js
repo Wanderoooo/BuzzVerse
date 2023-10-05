@@ -39,6 +39,51 @@ export default function DashBoard() {
         localStorage.removeItem('access_token');
         localStorage.removeItem('username');
     };
+
+
+    async function getUserServers() {
+        try {
+        const token = localStorage.getItem('access_token');
+        
+        if (!token) {
+            throw new Error('Authentication token is not available');
+        }
+    
+        const response = await api.get('servers/', {
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log(response.data);
+        console.log((response.data)[0].id);
+        console.log(getServerChannels((response.data)[0].id));
+        } catch (error) {
+        console.error('Error fetching servers:', error);
+        }
+    }
+
+    async function getServerChannels(serverId) {
+        try {
+        const token = localStorage.getItem('access_token');
+        
+        if (!token) {
+            throw new Error('Authentication token is not available');
+        }
+    
+        const response = await api.get('servers/' + serverId, {
+            headers: {
+            'Authorization': `Bearer ${token}`
+            }
+        });
+        console.log(response.data);
+        } catch (error) {
+        console.error('Error fetching servers:', error);
+        }
+    }
+
+    getUserServers();
+
+    
       
     function renderServer(server) {
         if (server == 'friends') {
@@ -154,6 +199,7 @@ export default function DashBoard() {
         <Theme appearance="dark" accentColor="teal" grayColor="gray" radius="full">
             <Text>Selected Server: {selectedServer}  </Text>
             <Text>Selected Channel: {selectedChannel} </Text>
+            <Button onClick={() => getUserServers()}>get servers</Button>
             <Grid columns="6" style={{gridTemplateColumns:'1fr 0fr 2fr 0fr 8fr 4fr'}} m='4' gap='4'>
                 <Flex direction="column" gap="4" width='100%'>
                     <LeftMenu serverList={serverList} clicks={onClickServerFunctions}/>

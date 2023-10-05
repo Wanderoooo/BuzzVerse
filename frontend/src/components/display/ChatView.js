@@ -13,9 +13,9 @@ export default function ChatView(props) {
             {props.messages.map((msg) => {
              return (
                     <>
-                    <Text align='right' size='1'>{msg.time.getHours() + ':' + msg.time.getMinutes() + ', ' 
-                        + months[msg.time.getMonth()] + ' ' + msg.time.getDate() + ' '}</Text>
-                    <Text align='right' key={props.username + ''}>{msg.text}</Text>
+                        <Text align='right' size='1' key={msg.time.getHours + msg.time.getMinutes + msg.time.getDate + "time"}>{msg.time.getHours() + ':' + msg.time.getMinutes() + ', ' 
+                            + months[msg.time.getMonth()] + ' ' + msg.time.getDate() + ' '}</Text>
+                        <Text align='right' key={msg.getDate + msg.getMinutes + "msg"}>{msg.text}</Text>
                     </>
                 )})}
         </Flex>
