@@ -56,13 +56,13 @@ export default function DashBoard() {
         });
         console.log(response.data);
         console.log((response.data)[0].id);
-        console.log(getServerChannels((response.data)[0].id));
+        console.log(getChannelsInServer((response.data)[0].id));
         } catch (error) {
         console.error('Error fetching servers:', error);
         }
     }
 
-    async function getServerChannels(serverId) {
+    async function getAllChannels() {
         try {
         const token = localStorage.getItem('access_token');
         
@@ -70,15 +70,29 @@ export default function DashBoard() {
             throw new Error('Authentication token is not available');
         }
     
-        const response = await api.get('servers/' + serverId, {
+        const response = await api.get('channels/', {
             headers: {
             'Authorization': `Bearer ${token}`
             }
         });
-        console.log(response.data);
+        return(response.data);
         } catch (error) {
-        console.error('Error fetching servers:', error);
+        console.error('Error fetching server info', error);
         }
+    }
+
+    async function getChannelsInServer(serverId) {
+        const all = await getAllChannels(); 
+        console.log(all);
+        let res = [];
+        console.log(all.length);
+        for (let i = 0; i < all.length; i++) {
+            console.log(all[i].server);
+            if (all[i].server == serverId) {
+                res.push(all[i]);
+            }
+        }
+        return res;
     }
 
     getUserServers();
