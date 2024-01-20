@@ -7,6 +7,22 @@
   min-height: 100vh;
 }
 
+#top-bottom {
+  position: relative;
+}
+
+#div1, #div2 {
+  position:absolute;
+}
+
+#div1 {
+  top:0
+}
+
+#div2 {
+  bottom:0;
+}
+
 .description {
   display: inherit;
   justify-content: inherit;

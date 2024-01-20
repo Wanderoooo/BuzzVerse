@@ -8,7 +8,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
 from users.models import UserProfile
 from django.core.exceptions import PermissionDenied
 
@@ -21,7 +20,7 @@ class ServerViewSet(viewsets.ModelViewSet):
             user_profile = UserProfile.objects.get(user=self.request.user)
             return Server.objects.filter(user_profiles=user_profile)
         else:
-            return Server.objects.none()  # Return an empty queryset if user is not authenticated
+            return Server.objects.all()  # Return an empty queryset if user is not authenticated
 
     def list(self, request, *args, **kwargs):
         if request.user.is_authenticated:
@@ -29,10 +28,13 @@ class ServerViewSet(viewsets.ModelViewSet):
             serializer = ServerSerializer(queryset, many=True)
             return Response(serializer.data)
         else:
-            return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+            queryset = self.get_queryset()
+            serializer = ServerSerializer(queryset, many=True)
+            return Response(serializer.data)
+        # Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
     
 def create(self, request, *args, **kwargs):
-    if request.user.is_authenticated:
+    # if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
         serializer = ServerSerializer(data=request.data)
         if serializer.is_valid():
@@ -40,8 +42,8 @@ def create(self, request, *args, **kwargs):
             server.user_profiles.add(user_profile)  # Automatically add the user's profile
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    else:
-        return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
+    # else:
+    #     return Response({"error": "User not authenticated"}, status=status.HTTP_403_FORBIDDEN)
 
 
 

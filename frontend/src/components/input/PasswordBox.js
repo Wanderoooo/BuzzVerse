@@ -32,7 +32,7 @@ export default function PasswordBox(props) {
     return (
         <>
             <TextField.Root>
-                <TextField.Input placeholder={props.placeholder} onChange={printText} type={viewableToString(passwordViewable)}/>
+                <TextField.Input placeholder={props.placeholder} id={props.id} onChange={props.onChange} type={viewableToString(passwordViewable)} name={props.name}/>
                 <TextField.Slot>
                     {viewableToIcon(passwordViewable)}
                 </TextField.Slot>
